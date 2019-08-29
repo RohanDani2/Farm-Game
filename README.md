@@ -1,24 +1,10 @@
-# Farm-Game
+# Project 2: Farming 
 
-Project 2 implements a game where you farm by planting, watering, tending and harvesting plants in different plots on your farm.  The Farm ​as a whole
-​ has Money, Farm health, and Time stats that will be displayed on the BoosterXL LCD Screen. Your farm’s ​individual plots
-​ have Age, health, and hydration levels that correspond to the state of the plot’s crop. You will interact with your farm by sending commands from your laptop through a UART connection to the MSP432P4. The unit of Time for the farm is one month, which for your game is a specific number of seconds depending on the difficulty level. 
-2.1. Initial Game State: The initial game state starts with the farm with no crops planted in the plots.  The game stats are: Time is initially zero, Money is 3, and Farm health is zero. The game timer for the game will not begin until the player presses any key on the keyboard while in MobaXterm.  The Farm health will remain zero until at least one crop is planted in one of the plots. 
-2.2. Application Display: Your Farm should have a border fence and the farm must be split into 6 individual plots. Above the farm in the top left corner, the time that has passed should be displayed. In the right top corner, the difficulty level should appear represented by ‘E’, ’M’, or ’H’. Under the farm, you are to display the Money and Health levels of the farm. As the game progresses, the state and stats of the plot should be represented by either graphics or characters. The plot that the farmer is working on is highlighted by a green fence. The below figure shows a screenshot with three planted plots with the top left plot being the active (selected) plot.
 
-Your farm game will receive input characters from the player, through the UART connection, to perform the following actions: 
-* (Any character)  – To begin the game. ‘l’ – To change the level of the game to cycle through Easy, Medium, and Hard. ‘p’ – to plant the plot of land ‘r’ – To water the plot (r stands for rain!) ‘t’ – to tend the plot of land (i.e remove the weeds) ‘h’ – Harvest the selected plot ‘w’, ’s’, ’a’, ’d’ – Moves around the farm to select a plot. w/s for up/down and a/d for left/right. 
- 
-2.4. Farm Plot’s States: Each of the plots can have one of the following states: 1. Empty:​ No plants, and does not factor into the overall health of the farm. a. ‘p’ will update the plot to ​Seeding​, with a health of 3 and hydration level of 2. 
- 2. Seeding​:  The plot remains in this state until one of the following conditions is met: a. When the Age is greater than 2 months but not greater than 9 months with a hydration level greater than 3 and health level more than zero, the state updates the plot’s state to ​Growing​.  b. If the Plot Health or Hydration falls to 0 or the age of the plot exceeds 9 months, the plot’s state updates to ​Dying​. 
- 3. Growing​: The plot remains in this state until one of the following conditions is met: a. When the Age is greater than 6 months but not more than 9 months with Health and Hydration levels of greater than 2, the plot’s state updates to ​Ready​ (to harvest). 
- b. If the Plot Health or Hydration falls to 0 or the age of the plot exceeds 9 months, the plot’s state updates to ​Dying​. 
- 4. Ready​: The plot remains in this state until one of the following conditions is met: a. If the User harvests by pressing ‘h’ on the keyboard the plot will become ​Empty ​and the farm gains 2 levels in money.  b. If the Health or Hydration becomes 0 or the Age exceeds 9 months the plot goes to Dying​. 
- 5. Dying​: A Dead plot has a health level of 0 that ​contributes 
-​ to the overall farm health.  The plot remains in this state until the below condition is met: a. If the User tends to the plot by pressing ‘t’, the plot goes to ​Empty ​and the health level of the plot is reset to 0. 
- 
-2.5. Farm Plot’s Properties: 1. Hydration​: It can change in two ways a. Raining (‘r’) the individual plots will increase the hydration level of the selected plot by 1 up to a  hydration level of 5. b. Hydration levels will decrease by 1 for each plot that is not ​Empty ​or ​Dying ​after each month.  2. Health​: It can change in two ways: a. Tending the individual plots will increase the health level of the selected plot by 1 up to a health level of 5.  b. Health levels will decrease by 1 for each plot that is not ​Empty ​or ​Dying ​after each month.  3. Age​: After the plot enters ​Seeding​, the age increases by 1 as each month passes. 
- 
-2.6. Farm Health: The farm health is calculated by the average (simple integer division) health of all non-empty plots on the farm. ​If the health of the farm reaches zero and the farm does not have any more money, the game is over. 
-​ When the farm dies the LCD screen should update to a game over screen. You can create any game over screen you like, so be creative.  
-2.7. Game Difficulty: The leveling mechanism in the game will cycle Easy -> Medium->  Hard -> Easy. The Settings required for each level can be seen in Table 1.  
+## Overview:
+The purpose for this assignment is for students to gain experience using the microcontroller�s UART, timers, display, and implementing game logic. You will develop a Farming game that is displayed on the TI BoosterXL�s LCD Screen and controlled with your laptop keyboard via a UART connection.
+## Description:
+Description:
+Project 2 implements a game where you farm by planting, watering, tending and harvesting plants in different plots on your farm.  The Farm has Money, Crop health, and Time passed stats that will be displayed on the BoosterXL LCD Screen. Your farm�s individual plots have Age, health, and hydration levels that correspond to the state of the plots crop. You will interact with your farm by sending commands from your laptop through a UART connection to the MSP432P4.
+
+
